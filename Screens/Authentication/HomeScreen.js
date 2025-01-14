@@ -1,33 +1,45 @@
 import {Text, View, Image, Pressable} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
-import authHomeStyles from "../../stylesheet/authentication/auth-home-styles";
+import { authHome as styles} from "../../stylesheet/authentication/auth-home-styles";
 import colors from "../../constants/colors";
 import images from "../../constants/images";
 
 function HomeScreen() {
 
+    {/*TODO: For colors use camelCase not underscore for example (darkblueVar1 not darkblue_var_1)*/}
+
+
+
     return (
-        <View style={authHomeStyles.background}>
-            <Image style={authHomeStyles.logo} source={images.logo}></Image>
-            <Image style={authHomeStyles.homeImage}
+        <View style={styles.background}>
+           {/*TODO: Create a global component for logo*/}
+            <Image style={styles.logo} source={images.logo}></Image>
+
+            {/*TODO: replace homeImage with coverPhoto and homeAuthImage with coverPhoto*/}
+            <Image style={styles.homeImage}
                    source={images.homeAuthImage}></Image>
 
+            {/*Background Linear Gradient*/}
             <LinearGradient
-                // Background Linear Gradient
                 colors={['transparent', colors.darkblue_var_1]}
-                style={authHomeStyles.gradient}
+                style={styles.gradient}
             />
 
-            <View style={authHomeStyles.card}>
-                <Text style={authHomeStyles.title}>Chat with your friends</Text>
-                <Text style={authHomeStyles.description}>
+            <View style={styles.card}>
+                {/*TODO: Replace title to CardTitle*/}
+                <Text style={styles.title}>Chat with your friends</Text>
+                {/*TODO: Replace title to CardDescription*/}
+                <Text style={styles.description}>
                     Secure communication and collaboration tool, built for you & your friends.
                 </Text>
-                <Pressable style={authHomeStyles.buttonPrimary}>
-                    <Text style={authHomeStyles.buttonTextPrimary}>Login</Text>
+
+                {/*TODO: Please add a Ripple Effect make sure that it supports in ios also.*/}
+                {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
+                <Pressable style={styles.buttonPrimary}>
+                    <Text style={styles.buttonTextPrimary}>Login</Text>
                 </Pressable>
                 <Pressable>
-                    <Text style={authHomeStyles.buttonTextSecondary}>Create an Account</Text>
+                    <Text style={styles.buttonTextSecondary}>Create an Account</Text>
                 </Pressable>
             </View>
         </View>

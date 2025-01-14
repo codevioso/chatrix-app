@@ -1,33 +1,24 @@
 import {StyleSheet} from "react-native";
 import colors from "../../constants/colors";
-import {TextStyle} from "react-native";
-import {ViewStyle} from "react-native";
-import {ImageStyle} from "react-native";
-type AuthHomeStyles = {
-    background: ViewStyle;
-    homeImage: ImageStyle;
-    logo: ImageStyle;
-    card: ViewStyle;
-    gradient: ViewStyle;
-    title: TextStyle; // Ensure this aligns with `<Text>` usage
-    description: TextStyle;
-    buttonPrimary: ViewStyle;
-    buttonTextPrimary: ViewStyle;
-    buttonTextSecondary: ViewStyle;
-};
+import type {HomepageInterface} from "../stylesInterfaces/auth-interface";
 
-const authHomeStyles: AuthHomeStyles = StyleSheet.create({
+export const authHome: HomepageInterface = StyleSheet.create({
     background: {
         flex: 1,
-        resizeMode: 'cover',
         justifyContent: 'space-between',
         alignItems: 'center',
+        height:100 + '%',
+        width:100 + '%',
     },
     homeImage:{
-        width:460,
-        height:300,
-        alignItems:'center'
-
+        alignItems:'center',
+        position:"absolute",
+        top:0,
+        left:0,
+        zIndex:0,
+        height: "100%",
+        width: "100%",
+        resizeMode: "contain",
     },
 
     logo:{
@@ -35,7 +26,9 @@ const authHomeStyles: AuthHomeStyles = StyleSheet.create({
         height:120,
         marginBottom:30,
         marginTop:40,
-        alignItems:'center'
+        alignItems:'center',
+        position:"relative",
+        zIndex:1,
     },
     card: {
         padding: 10,
@@ -50,7 +43,8 @@ const authHomeStyles: AuthHomeStyles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        height: 700,
+        height: "100%",
+        width: "100%",
     },
     title: {
         fontSize: 50,
@@ -91,4 +85,3 @@ const authHomeStyles: AuthHomeStyles = StyleSheet.create({
     },
 })
 
-export default authHomeStyles;
