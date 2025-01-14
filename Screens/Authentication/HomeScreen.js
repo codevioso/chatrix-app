@@ -7,8 +7,7 @@ import images from "../../constants/images";
 function HomeScreen() {
 
     {/*TODO: For colors use camelCase not underscore for example (darkblueVar1 not darkblue_var_1)*/}
-
-
+    {/*TODO: For Images use camelCase not underscore for example (coverImage1 not cover_image_1)*/}
 
     return (
         <View style={styles.background}>
