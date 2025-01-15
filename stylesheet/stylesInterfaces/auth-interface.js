@@ -1,0 +1,14 @@
+import {ImageStyle, TextStyle, ViewStyle} from "react-native";
+
+ export interface HomepageInterface  {
+    background: ViewStyle;
+    logo: ImageStyle;
+    homeAuthCover: ImageStyle;
+    card: ViewStyle;
+    gradient: ViewStyle;
+    cardTitle: TextStyle;
+    cardDescription: TextStyle;
+    buttonPrimary: ViewStyle;
+    buttonTextPrimary: ViewStyle;
+    buttonTextSecondary: ViewStyle;
+}
