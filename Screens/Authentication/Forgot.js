@@ -5,7 +5,7 @@ import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 
-const LoginScreen = ({navigation}) => {
+const ForgotScreen = ({navigation}) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -77,12 +77,12 @@ const LoginScreen = ({navigation}) => {
                     </View>
 
 
-                    <View style={[stylesheet.width90, stylesheet.marginBottom30]}>
+                    <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
                         <PrimaryButton>Login</PrimaryButton>
                     </View>
 
-                    <View style={[stylesheet.textCenter, stylesheet.marginBottom40]}>
-                        <Text style={[stylesheet.fontSize15]}  onPress={() => navigation.navigate('ForgotScreen')}>
+                    <View style={[stylesheet.textCenter, stylesheet.marginTop20]}>
+                        <Text style={[stylesheet.fontSize15]} onPress={() => navigation.navigate('ForgotPassword')}>
                             forgot your password?
                         </Text>
                     </View>
@@ -106,4 +106,4 @@ const LoginScreen = ({navigation}) => {
     )
 }
 
-export default LoginScreen;
+export default ForgotScreen;
