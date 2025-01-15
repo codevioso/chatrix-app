@@ -10,7 +10,7 @@ export const authHome: HomepageInterface = StyleSheet.create({
         height:100 + '%',
         width:100 + '%',
     },
-    homeAuthImage:{
+    homeAuthCover:{
         alignItems:'center',
         position:"absolute",
         top:0,
@@ -46,7 +46,7 @@ export const authHome: HomepageInterface = StyleSheet.create({
         height: "100%",
         width: "100%",
     },
-    title: {
+    cardTitle: {
         fontSize: 50,
         fontWeight: 'bold',
         lineHeight: 70,
@@ -54,7 +54,7 @@ export const authHome: HomepageInterface = StyleSheet.create({
         textAlign: 'left',
         marginBottom: 20,
     },
-    description: {
+    cardDescription: {
         fontSize: 18,
         color: colors.light_var_1,
         textAlign: 'left',
