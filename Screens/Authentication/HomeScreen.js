@@ -1,10 +1,13 @@
-import {Text, View, Image, Pressable, TouchableNativeFeedback, TouchableOpacity, Platform} from "react-native";
+import {Text, View, Image, Pressable, Button} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {authHome as styles} from "../../stylesheet/authentication/auth-home-styles";
 import colors from "../../constants/colors";
 import images from "../../constants/images";
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
+    function navigateScreen(NavScreen){
+        navigation.navigate(NavScreen);
+    }
 
     return (
         <View style={styles.background}>
@@ -27,7 +30,7 @@ function HomeScreen() {
 
                 {/*TODO: Please add a Ripple Effect make sure that it supports in ios also.*/}
                 {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
-                <Pressable style={styles.buttonPrimary}>
+                <Pressable style={styles.buttonPrimary} title={'Login'} onPress={() => navigateScreen('LoginScreen')}>
                     <Text style={styles.buttonTextPrimary}>Login</Text>
                 </Pressable>
                 <Pressable
