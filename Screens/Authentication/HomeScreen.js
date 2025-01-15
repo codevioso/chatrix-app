@@ -27,24 +27,9 @@ function HomeScreen() {
 
                 {/*TODO: Please add a Ripple Effect make sure that it supports in ios also.*/}
                 {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
-                {Platform.OS === 'android' ? (
-                    <TouchableNativeFeedback
-                        background={TouchableNativeFeedback.Ripple('#ffffff', false, 10)}
-                        onPress={() => console.log('Login pressed')}
-                    >
-                        <View style={styles.buttonPrimary}>
-                            <Text style={styles.buttonTextPrimary}>Login</Text>
-                        </View>
-                    </TouchableNativeFeedback>
-                ) : (
-                    <TouchableOpacity
-                        style={styles.buttonPrimary}
-                        onPress={() => console.log('Login pressed')}
-                    >
-                        <Text style={styles.buttonTextPrimary}>Login</Text>
-                    </TouchableOpacity>
-                )}
-
+                <Pressable style={styles.buttonPrimary}>
+                    <Text style={styles.buttonTextPrimary}>Login</Text>
+                </Pressable>
                 <Pressable
                     onPress={() => console.log('Create an Account pressed')}
                     android_ripple={{color: '#d3d3d3', borderless: false,radius:10}}
