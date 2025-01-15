@@ -1,6 +1,6 @@
 import {Text, View, Image, Pressable, TouchableNativeFeedback, TouchableOpacity, Platform} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
-import { authHome as styles} from "../../stylesheet/authentication/auth-home-styles";
+import {authHome as styles} from "../../stylesheet/authentication/auth-home-styles";
 import colors from "../../constants/colors";
 import images from "../../constants/images";
 
@@ -29,7 +29,7 @@ function HomeScreen() {
                 {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
                 {Platform.OS === 'android' ? (
                     <TouchableNativeFeedback
-                        background={TouchableNativeFeedback.Ripple('#ffffff', false)}
+                        background={TouchableNativeFeedback.Ripple('#ffffff', false, 10)}
                         onPress={() => console.log('Login pressed')}
                     >
                         <View style={styles.buttonPrimary}>
@@ -47,7 +47,7 @@ function HomeScreen() {
 
                 <Pressable
                     onPress={() => console.log('Create an Account pressed')}
-                    android_ripple={{ color: '#d3d3d3' }}
+                    android_ripple={{color: '#d3d3d3', borderless: false,radius:10}}
                     style={styles.buttonTextSecondary}
                 >
                     <Text style={styles.buttonTextSecondary}>Create an Account</Text>
