@@ -16,5 +16,10 @@ export interface HomepageInterface {
 export interface AuthenticationInterface {
     authContainer: ViewStyle;
     logo: ImageStyle;
+    authTitle: TextStyle;
     authInput:ViewStyle,
+    authInputFocused:ViewStyle,
+    formContent:ViewStyle,
+    passIconWrap:ViewStyle,
+    passIcon:ViewStyle,
 }

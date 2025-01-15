@@ -4,10 +4,13 @@ import images from "../../constants/images";
 import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
-function LoginScreen(){
+function RegisterScreen(){
     const [formData, setFormData] = useState({
+        name: '',
         email: '',
+        phone: '',
         password: '',
+        password_confirmation: '',
     });
     const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
     const [passVisibility, setPassVisibility] = useState(false); // State to handle password type
@@ -98,4 +101,4 @@ function LoginScreen(){
    )
 }
 
-export default LoginScreen;
+export default RegisterScreen;
