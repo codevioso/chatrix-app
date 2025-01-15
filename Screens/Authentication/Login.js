@@ -12,6 +12,8 @@ function LoginScreen(){
 
                <Image style={authenticationStyles.logo} source={images.logo}/>
 
+
+               <Text style={{marginBottom:40,fontSize:20,fontWeight:'bold'}}>Login</Text>
                <TextInput
                    style={authenticationStyles.authInput}
                    placeholder="Email"

@@ -29,5 +29,5 @@ export const authenticationStyles: AuthenticationInterface = StyleSheet.create({
         shadowRadius: 1,
         elevation: 3,
     },
-  
+
 })
