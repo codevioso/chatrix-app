@@ -60,22 +60,8 @@ export const authHome: HomepageInterface = StyleSheet.create({
         textAlign: 'left',
         marginBottom: 40,
     },
-    buttonPrimary: {
-        backgroundColor: colors.theme,
-        paddingVertical: 20,
-        paddingHorizontal: 30,
-        textAlign: "center",
-        alignItems: 'center',
-        borderRadius: 20,
-        marginBottom: 25,
-    },
-    buttonTextPrimary: {
-        color: colors.white,
-        fontSize: 18,
-        fontWeight: 'bold',
-        cursor:"pointer",
-    },
     buttonTextSecondary: {
+        marginTop:20,
         textAlign: 'center',
         color: colors.light_var_1,
         fontSize: 18,
