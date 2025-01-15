@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 import colors from "../../constants/colors";
-import type {HomepageInterface} from "../stylesInterfaces/auth-interface";
+import  {HomepageInterface} from "../stylesInterfaces/auth-interface";
 
 export const authHome: HomepageInterface = StyleSheet.create({
     background: {
@@ -10,7 +10,7 @@ export const authHome: HomepageInterface = StyleSheet.create({
         height:100 + '%',
         width:100 + '%',
     },
-    homeImage:{
+    homeAuthImage:{
         alignItems:'center',
         position:"absolute",
         top:0,
