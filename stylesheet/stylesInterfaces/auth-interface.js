@@ -22,4 +22,5 @@ export interface AuthenticationInterface {
     formContent:ViewStyle,
     passIconWrap:ViewStyle,
     passIcon:ViewStyle,
+    forgotContainer:ViewStyle,
 }

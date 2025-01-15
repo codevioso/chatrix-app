@@ -1,6 +1,7 @@
 import {StyleSheet} from "react-native";
 import {AuthenticationInterface} from "../stylesInterfaces/auth-interface";
 import colors from "../../constants/colors";
+import stylesheet from "../stylesheet";
 
 export const authenticationStyles: AuthenticationInterface = StyleSheet.create({
     authContainer: {
@@ -65,5 +66,10 @@ export const authenticationStyles: AuthenticationInterface = StyleSheet.create({
         height: 20,
         cursor: 'pointer',
     },
+    forgotContainer:{
+        alignSelf:'flex-end',
+        marginBottom:20,
+        marginRight:30,
+    }
 
 })

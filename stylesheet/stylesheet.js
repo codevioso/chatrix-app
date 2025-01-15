@@ -188,6 +188,8 @@ const stylesheet = StyleSheet.create({
     justifyBetween: {justifyContent: 'space-between'},
     alignItemsCenter: {alignItems: 'center'},
     alignItemsStart: {alignItems: 'flex-start'},
+    alignItemsEnd: {alignItems: 'flex-end'},
+    alignSelfEnd: {alignSelf: 'flex-end'},
     flexRow: {flexDirection: 'row'},
     flexColumn: {flexDirection: 'column'},
     flexWrap: {flexWrap: 'wrap'},

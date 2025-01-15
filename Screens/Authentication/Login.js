@@ -76,16 +76,17 @@ const LoginScreen = ({navigation}) => {
                         </View>
                     </View>
 
+                    <View style={authenticationStyles.forgotContainer}>
+                        <Text style={[stylesheet.fontSize15]}  onPress={() => navigation.navigate('ForgotScreen')}>
+                            forgot your password?
+                        </Text>
+                    </View>
 
                     <View style={[stylesheet.width90, stylesheet.marginBottom30]}>
                         <PrimaryButton>Login</PrimaryButton>
                     </View>
 
-                    <View style={[stylesheet.textCenter, stylesheet.marginBottom40]}>
-                        <Text style={[stylesheet.fontSize15]}  onPress={() => navigation.navigate('ForgotScreen')}>
-                            forgot your password?
-                        </Text>
-                    </View>
+
 
                     <View style={[stylesheet.alignItemsCenter]}>
                         <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Don't have an account?</Text>

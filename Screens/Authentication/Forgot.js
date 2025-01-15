@@ -8,10 +8,8 @@ import stylesheet from "../../stylesheet/stylesheet";
 const ForgotScreen = ({navigation}) => {
     const [formData, setFormData] = useState({
         email: '',
-        password: '',
     });
     const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
-    const [passVisibility, setPassVisibility] = useState(false); // State to handle password type
     const handleFocus = (inputName) => {
         setFocusedInput(inputName);
     };
@@ -21,8 +19,6 @@ const ForgotScreen = ({navigation}) => {
         setFormData({...formData, [name]: value});
     };
 
-    // Function to handle password visibility
-    const handlePassVisibility = () => setPassVisibility(prev => !prev);
 
 
     return (
@@ -33,7 +29,7 @@ const ForgotScreen = ({navigation}) => {
 
 
                 <View style={authenticationStyles.formContent}>
-                    <Text style={authenticationStyles.authTitle}>Login</Text>
+                    <Text style={authenticationStyles.authTitle}>Forgot Password</Text>
                     <View style={stylesheet.width90}>
                         <TextInput
                             style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
@@ -49,49 +45,15 @@ const ForgotScreen = ({navigation}) => {
                     </View>
 
 
-                    <View style={[stylesheet.width90, stylesheet.positionRelative]}>
-                        <TextInput
-                            style={[authenticationStyles.authInput, focusedInput === 'password' && authenticationStyles.authInputFocused]}
-                            placeholder="Password"
-                            placeholderTextColor="#888"
-                            secureTextEntry={!passVisibility}
-                            value={formData.password}
-                            onChangeText={(value) => handleChange('password', value)}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onFocus={() => handleFocus('password')}
-                        />
-
-                        {/*Pass icon*/}
-                        <View style={[authenticationStyles.passIconWrap]}>
-                            <TouchableOpacity onPress={() => handlePassVisibility()}>
-                                {passVisibility ?
-                                    (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
-                                            source={images.eye}/>)
-                                    :
-                                    (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
-                                            source={images.eyeHidden}/>)
-                                }
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-
                     <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton>Login</PrimaryButton>
-                    </View>
-
-                    <View style={[stylesheet.textCenter, stylesheet.marginTop20]}>
-                        <Text style={[stylesheet.fontSize15]} onPress={() => navigation.navigate('ForgotPassword')}>
-                            forgot your password?
-                        </Text>
+                        <PrimaryButton onPress={() => navigation.navigate('ResetScreen')}>Submit</PrimaryButton>
                     </View>
 
                     <View style={[stylesheet.alignItemsCenter]}>
-                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Don't have an account?</Text>
+                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Remember your password?</Text>
 
-                        <Pressable onPress={() => navigation.navigate('RegisterScreen')}>
-                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Sign up</Text>
+                        <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Log in</Text>
                         </Pressable>
 
                     </View>

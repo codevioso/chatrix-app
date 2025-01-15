@@ -5,6 +5,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import RegisterScreen from "./Screens/Authentication/Register";
 import ForgotScreen from "./Screens/Authentication/Forgot";
+import ResetScreen from "./Screens/Authentication/Reset";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,9 @@ export default function App() {
                         headerShown: false,
                     }}/>
                     <Stack.Screen name={'ForgotScreen'} component={ForgotScreen} options={{
+                        headerShown: false,
+                    }}/>
+                    <Stack.Screen name={'ResetScreen'} component={ResetScreen} options={{
                         headerShown: false,
                     }}/>
                 </Stack.Navigator>

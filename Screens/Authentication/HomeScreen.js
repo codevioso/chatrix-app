@@ -35,7 +35,7 @@ function HomeScreen({navigation}) {
                 <PrimaryButton onPress={navigateToLoginScreen}>Login</PrimaryButton>
 
                 <Pressable
-                    onPress={() => console.log('Create an Account pressed')}
+                    onPress={() => navigation.navigate('RegisterScreen')}
                     style={styles.buttonTextSecondary}
                 >
                     <Text style={styles.buttonTextSecondary}>Create an Account</Text>
