@@ -1,6 +1,6 @@
 import {ImageStyle, TextStyle, ViewStyle} from "react-native";
 
- export interface HomepageInterface  {
+export interface HomepageInterface {
     background: ViewStyle;
     logo: ImageStyle;
     homeAuthCover: ImageStyle;
@@ -11,4 +11,10 @@ import {ImageStyle, TextStyle, ViewStyle} from "react-native";
     buttonPrimary: ViewStyle;
     buttonTextPrimary: ViewStyle;
     buttonTextSecondary: ViewStyle;
+}
+
+export interface AuthenticationInterface {
+    authContainer: ViewStyle;
+    logo: ImageStyle;
+    authInput:ViewStyle,
 }
