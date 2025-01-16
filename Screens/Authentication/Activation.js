@@ -54,7 +54,7 @@ const ActivationScreen = ({navigation}) => {
 
 
                     <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton onPress={() => navigation.navigate('ResetScreen')}>Activate
+                        <PrimaryButton onPress={() => console.log('activating')}>Activate
                             Account</PrimaryButton>
                     </View>
 

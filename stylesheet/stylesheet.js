@@ -230,7 +230,8 @@ const stylesheet = StyleSheet.create({
 
     alertSuccessText: {
         color: colors.darkGreen,
-    }
+    },
+
 
 })
 

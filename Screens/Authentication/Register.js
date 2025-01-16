@@ -151,7 +151,7 @@ function RegisterScreen({navigation}) {
 
 
                             <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                                <PrimaryButton>Sign up</PrimaryButton>
+                                <PrimaryButton  onPress={() => navigation.navigate('ActivationScreen')}>Sign up </PrimaryButton>
                             </View>
 
                             <View style={[stylesheet.alignItemsCenter]}>
