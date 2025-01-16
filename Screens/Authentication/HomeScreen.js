@@ -1,10 +1,14 @@
-import {Text, View, Image, Pressable, TouchableNativeFeedback, TouchableOpacity, Platform} from "react-native";
+import {Text, View, Image, Pressable} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {authHome as styles} from "../../stylesheet/authentication/auth-home-styles";
 import colors from "../../constants/colors";
 import images from "../../constants/images";
+import PrimaryButton from "../../components/PrimaryButton";
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
+    function navigateToLoginScreen(){
+        navigation.navigate('LoginScreen');
+    }
 
     return (
         <View style={styles.background}>
@@ -25,14 +29,11 @@ function HomeScreen() {
                     Secure communication and collaboration tool, built for you & your friends.
                 </Text>
 
-                {/*TODO: Please add a Ripple Effect make sure that it supports in ios also.*/}
-                {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
-                <Pressable style={styles.buttonPrimary}>
-                    <Text style={styles.buttonTextPrimary}>Login</Text>
-                </Pressable>
+
+                <PrimaryButton onPress={navigateToLoginScreen}>Login</PrimaryButton>
+
                 <Pressable
-                    onPress={() => console.log('Create an Account pressed')}
-                    android_ripple={{color: '#d3d3d3', borderless: false,radius:10}}
+                    onPress={() => navigation.navigate('RegisterScreen')}
                     style={styles.buttonTextSecondary}
                 >
                     <Text style={styles.buttonTextSecondary}>Create an Account</Text>
