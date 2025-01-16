@@ -8,6 +8,8 @@ const colors = {
     darkblueVar1: '#032B68FF',
     darkGreen: '#155724',
     greenOp25: '#D4EDDA',
+    danger:'#D53D43'
+
 
 }
 

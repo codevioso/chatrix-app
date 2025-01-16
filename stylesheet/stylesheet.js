@@ -232,6 +232,14 @@ const stylesheet = StyleSheet.create({
         color: colors.darkGreen,
     },
 
+    errorText:{
+        color:colors.danger,
+        fontSize:12,
+        marginTop:2,
+        marginLeft:5,
+
+    }
+
 
 })
 
