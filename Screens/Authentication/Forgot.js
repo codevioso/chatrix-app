@@ -107,7 +107,7 @@ const ForgotScreen = ({navigation}) => {
                     </View>
 
                     <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton onPress={() => navigation.navigate('ResetScreen')}>
+                        <PrimaryButton onPress={() => navigation.navigate('ResetScreen',{email: formData.email})}>
                             {loading ? (
                                 <ActivityIndicator size={'small'} color={colors.white}/>
                             ) : 'Submit'}

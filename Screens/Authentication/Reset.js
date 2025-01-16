@@ -13,8 +13,11 @@ import images from "../../constants/images";
 import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
+import authService from "../../services/authService";
 
 const ResetScreen = ({navigation}) => {
+    const [loading, setLoading] = useState(false); // State to track loading status
+    const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
         email: '',
         reset_code: '',
@@ -43,6 +46,63 @@ const ResetScreen = ({navigation}) => {
         }));
     }
 
+    // Handle form submission
+    const resetPassword = async () => {
+        // Validate form fields
+        const validationErrors = validate(formData);
+
+        if (Object.keys(validationErrors).length === 0) {
+            try {
+                setErrors({}); // Clear previous errors
+                setLoading(true); // Start loading
+
+                // Use AuthService to handle reset password request
+                const response = await authService.reset({
+                    email: formData.email,
+                    reset_code: formData.reset_code,
+                    password: formData.password,
+                    password_confirmation: formData.password_confirmation,
+                });
+
+                if (response.success) {
+
+                } else {
+
+                    setErrors({ general: response.error });
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                setErrors({ general: 'Request failed. Please try again later.' });
+            } finally {
+                setLoading(false); // Stop loading when request is complete
+            }
+        } else {
+            setErrors(validationErrors);
+        }
+    };
+
+
+    // Simple validation function
+    const validate = (data) => {
+        const errors = {};
+
+        if (!data.reset_code) {
+            errors.reset_code = 'Reset code is required';
+        }
+
+        if (!data.password) {
+            errors.password = 'Password is required';
+        } else if (data.password.length < 6) {
+            errors.password = 'Password must be at least 6 characters';
+        }
+
+        if (data.password !== data.password_confirmation) {
+            errors.password_confirmation = 'Passwords doesn\'t not match';
+        }
+
+        return errors;
+    };
+
 
     return (
         <>
@@ -56,7 +116,7 @@ const ResetScreen = ({navigation}) => {
                     <View style={authenticationStyles.formContent}>
                         <Text style={authenticationStyles.authTitle}>Reset Password</Text>
 
-                        <View style={stylesheet.width90}>
+                        <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'reset_code' && authenticationStyles.authInputFocused]}
                                 placeholder="Reset Code"
@@ -67,10 +127,11 @@ const ResetScreen = ({navigation}) => {
                                 autoCorrect={false}
                                 onFocus={() => handleFocus('reset_code')}
                             />
+                            {errors.reset_code && <Text style={stylesheet.errorText}>{errors.reset_code}</Text>}
                         </View>
 
 
-                        <View style={[stylesheet.width90, stylesheet.positionRelative]}>
+                        <View style={[stylesheet.width90,stylesheet.marginBottom20, stylesheet.positionRelative]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'password' && authenticationStyles.authInputFocused]}
                                 placeholder="New Password"
@@ -95,10 +156,12 @@ const ResetScreen = ({navigation}) => {
                                     }
                                 </TouchableOpacity>
                             </View>
+
+                            {errors.password && <Text style={stylesheet.errorText}>{errors.password}</Text>}
                         </View>
 
 
-                        <View style={[stylesheet.width90, stylesheet.positionRelative]}>
+                        <View style={[stylesheet.width90,stylesheet.marginBottom20, stylesheet.positionRelative]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'password_confirmation' && authenticationStyles.authInputFocused]}
                                 placeholder="Confirm New Password"
@@ -123,11 +186,13 @@ const ResetScreen = ({navigation}) => {
                                     }
                                 </TouchableOpacity>
                             </View>
+
+                            {errors.password_confirmation && <Text style={stylesheet.errorText}>{errors.password_confirmation}</Text>}
                         </View>
 
 
                         <View style={[stylesheet.width90, stylesheet.marginBottom30]}>
-                            <PrimaryButton>Submit</PrimaryButton>
+                            <PrimaryButton onPress={resetPassword}>Submit</PrimaryButton>
                         </View>
 
 
