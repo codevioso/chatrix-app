@@ -73,7 +73,25 @@ class authService {
                 return {success: false, error: response.data.error || 'Reset Password failed'};
             }
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Reset Password error:', error);
+            return {success: false, error: error.message || 'An error occurred'};
+        }
+    }
+
+
+    async accountActivation(param) {
+        try {
+            const response = await axios.post(`${this.authApi}/activate/account`, param);
+            console.log(response)
+
+            if (response.data.status === 2000) {
+                return {success: true};
+            } else {
+                // Handle unsuccessful login attempt
+                return {success: false, error: response.data.error || 'Account activation failed'};
+            }
+        } catch (error) {
+            console.error('Activation error:', error);
             return {success: false, error: error.message || 'An error occurred'};
         }
     }

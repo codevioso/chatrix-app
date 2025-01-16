@@ -4,12 +4,15 @@ import images from "../../constants/images";
 import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
+import authService from "../../services/authService";
 
 const ActivationScreen = ({navigation}) => {
     const [formData, setFormData] = useState({
-        username: '',
+        username: 'ridwan5',
         activation_code: '',
     });
+    const [loading, setLoading] = useState(false); // State to track loading status
+    const [errors, setErrors] = useState({});
     const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
     const handleFocus = (inputName) => {
         setFocusedInput(inputName);
@@ -18,6 +21,57 @@ const ActivationScreen = ({navigation}) => {
     // Handle input change
     const handleChange = (name, value) => {
         setFormData({...formData, [name]: value});
+    };
+
+    // Handle form submission
+    const activeAccount = async () => {
+        // Validate form fields
+        const validationErrors = validate(formData);
+
+        if (Object.keys(validationErrors).length === 0) {
+            try {
+                setErrors({}); // Clear previous errors
+                setLoading(true); // Start loading
+
+                const response = await authService.accountActivation({
+                    username: formData.username,
+                    password: formData.activation_code,
+                });
+
+                if (response.success) {
+
+                } else {
+
+                    setErrors({ general: response.error });
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                setErrors({ general: 'Request failed. Please try again later.' });
+            } finally {
+                setLoading(false); // Stop loading when request is complete
+            }
+        } else {
+            setErrors(validationErrors);
+        }
+    };
+
+
+
+    // Simple validation function
+    const validate = (data) => {
+        const errors = {};
+
+        if (!data.username) {
+            errors.username = 'Username is required';
+        }
+
+        if (!data.activation_code) {
+            errors.activation_code = 'Activation code is required';
+        } else if (data.activation_code.length < 6) {
+            errors.activation_code = 'Activation code must be at least 6 characters';
+        }
+
+        return errors;
     };
 
 
@@ -50,11 +104,13 @@ const ActivationScreen = ({navigation}) => {
                             autoCorrect={false}
                             onFocus={() => handleFocus('activation_code')}
                         />
+
+                        {errors.activation_code && <Text style={stylesheet.errorText}>{errors.activation_code}</Text>}
                     </View>
 
 
                     <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton onPress={() => console.log('activating')}>Activate
+                        <PrimaryButton onPress={activeAccount()}>Activate
                             Account</PrimaryButton>
                     </View>
 

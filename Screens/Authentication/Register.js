@@ -142,7 +142,7 @@ function RegisterScreen({navigation}) {
                 // Handle response based on success or failure
                 if (response.success) {
                     // Navigate to another screen after successful registration
-                    navigation.navigate('ActivationScreen', {email: formData.email});
+                    // navigation.navigate('ActivationScreen', {email: formData.email});
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
@@ -290,7 +290,7 @@ function RegisterScreen({navigation}) {
                             <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Already have an
                                 account?</Text>
 
-                            <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+                            <Pressable onPress={() => navigation.navigate('ActivationScreen')}>
                                 <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Login</Text>
                             </Pressable>
 
