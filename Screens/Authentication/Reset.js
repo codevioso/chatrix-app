@@ -55,20 +55,7 @@ const ResetScreen = ({navigation}) => {
 
                      <View style={authenticationStyles.formContent}>
                          <Text style={authenticationStyles.authTitle}>Reset Password</Text>
-                         <View style={stylesheet.width90}>
-                             <TextInput
-                                 style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
-                                 placeholder="Email"
-                                 aria-hidden={true}
-                                 placeholderTextColor="#888"
-                                 keyboardType="email-address"
-                                 value={formData.email}
-                                 onChangeText={(value) => handleChange('email', value)}
-                                 autoCapitalize="none"
-                                 autoCorrect={false}
-                                 onFocus={() => handleFocus('email')}
-                             />
-                         </View>
+
                          <View style={stylesheet.width90}>
                              <TextInput
                                  style={[authenticationStyles.authInput, focusedInput === 'reset_code' && authenticationStyles.authInputFocused]}

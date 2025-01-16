@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import colors from "../constants/colors";
 // Generate dynamic margin styles
 const createDynamicMargins = () => {
     let marginStyles = {};
@@ -154,7 +155,6 @@ const createDynamicFlexGap = () => {
 };
 
 
-
 const stylesheet = StyleSheet.create({
     ...createDynamicMargins(), // Add generated margin styles here
     ...createDynamicPaddings(), // Add generated padding styles here
@@ -217,6 +217,20 @@ const stylesheet = StyleSheet.create({
     overflowAuto: {
         overflow: 'auto',
     },
+
+    alertSuccess: {
+        padding: 20,
+        borderColor: colors.lightVar1,
+        borderWidth: 1,
+        borderRadius: 15,
+        backgroundColor: colors.greenOp25,
+        textAlign:"center",
+        alignItems:"center"
+    },
+
+    alertSuccessText: {
+        color: colors.darkGreen,
+    }
 
 })
 

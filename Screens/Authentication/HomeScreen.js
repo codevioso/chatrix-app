@@ -29,8 +29,6 @@ function HomeScreen({navigation}) {
                     Secure communication and collaboration tool, built for you & your friends.
                 </Text>
 
-                {/*TODO: Please add a Ripple Effect make sure that it supports in ios also.*/}
-                {/*TODO: Create a new component called PrimaryButton.js and use that custom button component here. currently only for primary button*/}
 
                 <PrimaryButton onPress={navigateToLoginScreen}>Login</PrimaryButton>
 

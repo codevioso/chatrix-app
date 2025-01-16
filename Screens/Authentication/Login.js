@@ -95,6 +95,10 @@ const LoginScreen = ({navigation}) => {
                             <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Sign up</Text>
                         </Pressable>
 
+                        <Pressable onPress={() => navigation.navigate('ActivationScreen')}>
+                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Activation</Text>
+                        </Pressable>
+
                     </View>
 
                 </View>
