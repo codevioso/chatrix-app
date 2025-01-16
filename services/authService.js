@@ -40,6 +40,46 @@ class authService {
             return {success: false, error: error.message || 'An error occurred'};
         }
     }
+
+
+    async forgot(param) {
+        try {
+            const response = await axios.post(`${this.authApi}/forgot/password`, param);
+            console.log(response)
+
+            if (response.data.status === 2000) {
+                return {success: true};
+            } else {
+                // Handle unsuccessful login attempt
+                return {success: false, error: response.data.error || 'Forgot failed'};
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            return {success: false, error: error.message || 'An error occurred'};
+        }
+    }
+
+
+
+    async reset(param) {
+        try {
+            const response = await axios.post(`${this.authApi}/reset/password`, param);
+            console.log(response)
+
+            if (response.data.status === 2000) {
+                return {success: true};
+            } else {
+                // Handle unsuccessful login attempt
+                return {success: false, error: response.data.error || 'Reset Password failed'};
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            return {success: false, error: error.message || 'An error occurred'};
+        }
+    }
+
+
+
 }
 
 export default new authService();
