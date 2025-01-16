@@ -14,11 +14,29 @@ class authService {
             if (response.data.status === 2000) {
                 return {success: true};
             } else {
-                // Handle unsuccessful login attempt
+                // Handle unsuccessful register attempt
                 return {success: false, error: response.data.error || 'Register failed'};
             }
         } catch (error) {
             console.error('Register error:', error);
+            return {success: false, error: error.message || 'An error occurred'};
+        }
+    }
+
+
+    async login(param) {
+        try {
+            const response = await axios.post(`${this.authApi}/login`, param);
+            console.log(response)
+
+            if (response.data.status === 2000) {
+                return {success: true};
+            } else {
+                // Handle unsuccessful login attempt
+                return {success: false, error: response.data.error || 'Login failed'};
+            }
+        } catch (error) {
+            console.error('Login error:', error);
             return {success: false, error: error.message || 'An error occurred'};
         }
     }
