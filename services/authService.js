@@ -27,12 +27,9 @@ class authService {
     async login(param) {
         try {
             const response = await axios.post(`${this.authApi}/login`, param);
-            console.log(response)
-
-            if (response.data.status === 2000) {
-                return {success: true};
+            if (response.status === 200) {
+                return {success: true, token:response?.data?.access_token ?? null, data:response?.data?.data ?? null};
             } else {
-                // Handle unsuccessful login attempt
                 return {success: false, error: response.data.error || 'Login failed'};
             }
         } catch (error) {

@@ -11,6 +11,16 @@ import AuthContextProvider from "./store/auth-context";
 
 const Stack = createNativeStackNavigator();
 
+
+function AuthenticatedStack(){
+    return (
+        <Stack.Navigator id={"AuthenticatedStack"}>
+            <Stack.Screen name={'DashboardScreen'}></Stack.Screen>
+        </Stack.Navigator>
+    );
+}
+
+
 export default function App() {
     return (
         <>

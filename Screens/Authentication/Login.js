@@ -10,11 +10,12 @@ import {
 } from "react-native";
 import {authenticationStyles} from "../../stylesheet/authentication/authentication-styles";
 import images from "../../constants/images";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 import colors from "../../constants/colors";
+import {AuthContext} from "../../store/auth-context";
 
 const LoginScreen = ({navigation}) => {
     const [errors, setErrors] = useState({});
@@ -25,6 +26,9 @@ const LoginScreen = ({navigation}) => {
     });
     const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
     const [passVisibility, setPassVisibility] = useState(false); // State to handle password type
+
+    const authCtx = useContext(AuthContext);
+
     const handleFocus = (inputName) => {
         setFocusedInput(inputName);
     };
@@ -36,8 +40,6 @@ const LoginScreen = ({navigation}) => {
 
     // Function to handle password visibility
     const handlePassVisibility = () => setPassVisibility(prev => !prev);
-
-
 
     // Simple validation function
     const validate = (data) => {
@@ -56,7 +58,6 @@ const LoginScreen = ({navigation}) => {
 
         return errors;
     };
-
 
     // Handle form submission
     const login = async () => {
@@ -77,11 +78,12 @@ const LoginScreen = ({navigation}) => {
                 // Handle response based on success or failure
                 if (response.success) {
                     // Navigate to another screen after successful login
+                    const token = response.token;
+                    authCtx.authenticate(token);
+
                     // await login(response.data.data);
                     // navigation.navigate('Tabs');
                 } else {
-                    console.log(response.error)
-                    // Set error from AuthService response
                     setErrors({general: response.error});
                 }
             } catch (err) {
