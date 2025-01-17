@@ -39,7 +39,7 @@ const ActivationScreen = ({navigation}) => {
                 });
 
                 if (response.success) {
-
+                    console.log(response,'res')
                 } else {
 
                     setErrors({ general: response.error });
