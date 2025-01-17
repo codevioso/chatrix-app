@@ -10,6 +10,7 @@ import ActivationScreen from "./Screens/Authentication/Activation";
 import AuthContextProvider, {AuthContext} from "./store/auth-context";
 import DashboardScreen from "./Screens/Pages/Dashboard/Dashboard";
 import {useContext, useEffect} from "react";
+import Toast from "react-native-toast-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,9 @@ const Stack = createNativeStackNavigator();
 function AuthenticatedStack(){
     return (
         <Stack.Navigator id={"AuthenticatedStack"} initialRouteName={'DashboardScreen'}>
-            <Stack.Screen name={'DashboardScreen'} component={DashboardScreen}></Stack.Screen>
+            <Stack.Screen name={'DashboardScreen'} component={DashboardScreen} options={{
+                headerShown: false,
+            }}></Stack.Screen>
         </Stack.Navigator>
     );
 }

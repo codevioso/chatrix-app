@@ -16,6 +16,7 @@ import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 import colors from "../../constants/colors";
 import {AuthContext} from "../../store/auth-context";
+import Toast from "react-native-toast-message";
 
 const LoginScreen = ({navigation}) => {
     const [errors, setErrors] = useState({});
@@ -77,22 +78,25 @@ const LoginScreen = ({navigation}) => {
 
                 // Handle response based on success or failure
                 if (response.success) {
-                    const token = response.token;
-                    console.log("Login successful, token:", token);
-                    authCtx.authenticate(token);
-                    console.log("Authenticated:", authCtx.isAuthenticated);
+                    Toast.show({
+                        type:'success',
+                        text1:'Login Success!',
+                        text2:'You have been logged in successfully!',
+                    })
+
+                    setTimeout(() => {
+                        const token = response.token;
+                        authCtx.authenticate(token);
+                    },1000)
                 } else {
                     setErrors({general: response.error});
                 }
             } catch (err) {
-                // Handle any unexpected errors
-                // console.error('Login error:', err);
                 setErrors({general: 'Login failed. Please try again later.'});
             } finally {
-                setLoading(false); // Stop loading when request is complete
+                setLoading(false);
             }
         } else {
-            // Set errors if validation fails
             setErrors(validationErrors);
         }
     };
@@ -100,6 +104,7 @@ const LoginScreen = ({navigation}) => {
 
     return (
         <>
+            <Toast/>
             <KeyboardAvoidingView style={authenticationStyles.authContainer}>
 
                 <Image style={authenticationStyles.logo} source={images.logo}/>
