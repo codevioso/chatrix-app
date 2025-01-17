@@ -63,7 +63,7 @@ class authService {
             const response = await axios.post(`${this.authApi}/reset/password`, param);
             console.log(response)
 
-            if (response.data.status === 201) {
+            if (response.status === 200) {
                 return {success: true};
             } else {
                 // Handle unsuccessful login attempt

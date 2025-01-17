@@ -15,11 +15,11 @@ import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 
-const ResetScreen = ({navigation}) => {
+const ResetScreen = ({route,navigation}) => {
     const [loading, setLoading] = useState(false); // State to track loading status
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
-        email: '',
+        email: route.params.email,
         reset_code: '',
         password: '',
         password_confirmation: '',
@@ -65,7 +65,7 @@ const ResetScreen = ({navigation}) => {
                 });
 
                 if (response.success) {
-
+                    navigation.navigate('LoginScreen')
                 } else {
 
                     setErrors({ general: response.error });
@@ -115,20 +115,22 @@ const ResetScreen = ({navigation}) => {
 
                     <View style={authenticationStyles.formContent}>
                         <Text style={authenticationStyles.authTitle}>Reset Password</Text>
-                        {/* Display general errors */}
-                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
 
                         <View style={[stylesheet.alertSuccess, stylesheet.width90, stylesheet.marginBottom25]}>
                             <Text style={[stylesheet.alertSuccessText, stylesheet.fontSize15, stylesheet.textCenter]}>A six-digit reset code has been sent to your email address</Text>
                         </View>
+
+                        {/* Display general errors */}
+                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
 
                         <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'reset_code' && authenticationStyles.authInputFocused]}
                                 placeholder="Reset Code"
                                 placeholderTextColor="#888"
+                                keyboardType='numeric'
                                 value={formData.reset_code}
-                                onChangeText={(value) => handleChange('reset_code', value)}
+                                onChangeText={(value) => handleChange('reset_code', value.replace(/[^0-9]/g, ''))}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 onFocus={() => handleFocus('reset_code')}
@@ -153,7 +155,7 @@ const ResetScreen = ({navigation}) => {
                             {/*Pass icon*/}
                             <View style={[authenticationStyles.passIconWrap]}>
                                 <TouchableOpacity onPress={() => handlePassVisibility('password')}>
-                                    {passVisibility ?
+                                    {passVisibility.password ?
                                         (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
                                                 source={images.eye}/>)
                                         :
@@ -183,7 +185,7 @@ const ResetScreen = ({navigation}) => {
                             {/*Pass icon*/}
                             <View style={[authenticationStyles.passIconWrap]}>
                                 <TouchableOpacity onPress={() => handlePassVisibility('confirmPassword')}>
-                                    {passVisibility ?
+                                    {passVisibility.confirmPassword ?
                                         (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
                                                 source={images.eye}/>)
                                         :
