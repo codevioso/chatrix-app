@@ -19,13 +19,13 @@ import {AuthContext} from "../../store/auth-context";
 
 const LoginScreen = ({navigation}) => {
     const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false); // State to track loading status
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
-    const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
-    const [passVisibility, setPassVisibility] = useState(false); // State to handle password type
+    const [focusedInput, setFocusedInput] = useState(null);
+    const [passVisibility, setPassVisibility] = useState(false);
 
     const authCtx = useContext(AuthContext);
 
@@ -77,12 +77,10 @@ const LoginScreen = ({navigation}) => {
 
                 // Handle response based on success or failure
                 if (response.success) {
-                    // Navigate to another screen after successful login
                     const token = response.token;
+                    console.log("Login successful, token:", token);
                     authCtx.authenticate(token);
-
-                    // await login(response.data.data);
-                    // navigation.navigate('Tabs');
+                    console.log("Authenticated:", authCtx.isAuthenticated);
                 } else {
                     setErrors({general: response.error});
                 }
