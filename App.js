@@ -14,7 +14,7 @@ export default function App() {
     return (
         <>
             <NavigationContainer>
-                <Stack.Navigator id={"Auth"} initialRouteName={'ActivationScreen'}>
+                <Stack.Navigator id={"Auth"} initialRouteName={'AuthHomeScreen'}>
                     <Stack.Screen name={'AuthHomeScreen'} component={HomeScreen} options={{
                         headerShown: false,
                     }}/>

@@ -8,7 +8,7 @@ import authService from "../../services/authService";
 
 const ActivationScreen = ({navigation}) => {
     const [formData, setFormData] = useState({
-        username: 'ridwan5',
+        username: 'swccho263',
         activation_code: '',
     });
     const [loading, setLoading] = useState(false); // State to track loading status
@@ -35,7 +35,7 @@ const ActivationScreen = ({navigation}) => {
 
                 const response = await authService.accountActivation({
                     username: formData.username,
-                    password: formData.activation_code,
+                    activation_code: formData.activation_code,
                 });
 
                 if (response.success) {
