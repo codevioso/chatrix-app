@@ -9,17 +9,17 @@ class authService {
     async register(param) {
         try {
             const response = await axios.post(`${this.authApi}/signup`, param);
-            console.log(response)
+            console.log(response.status)
 
-            if (response.data.status === 2000) {
+            if (response.status === 201) {
                 return {success: true};
             } else {
                 // Handle unsuccessful register attempt
                 return {success: false, error: response.data.error || 'Register failed'};
             }
         } catch (error) {
-            console.error('Register error:', error);
-            return {success: false, error: error.message || 'An error occurred'};
+            let errors = error?.response;
+            return {success: false, error: errors?.data?.message || 'Register failed' };
         }
     }
 

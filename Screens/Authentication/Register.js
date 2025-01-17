@@ -133,7 +133,7 @@ function RegisterScreen({navigation}) {
                 // Use AuthService to handle registration
                 const response = await authService.register({
                     name: formData.name,
-                    username: formData.address,
+                    username: formData.username,
                     email: formData.email,
                     password: formData.password,
                     password_confirmation: formData.password_confirmation,
@@ -141,8 +141,9 @@ function RegisterScreen({navigation}) {
 
                 // Handle response based on success or failure
                 if (response.success) {
+                    console.log(response,'response',errors)
                     // Navigate to another screen after successful registration
-                    // navigation.navigate('ActivationScreen', {email: formData.email});
+                    navigation.navigate('ActivationScreen', {email: formData.email});
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
@@ -173,6 +174,9 @@ function RegisterScreen({navigation}) {
 
                     <View style={authenticationStyles.formContent}>
                         <Text style={authenticationStyles.authTitle}>Sign up</Text>
+                        {/* Display general errors */}
+                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+
                         <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'name' && authenticationStyles.authInputFocused]}
@@ -290,7 +294,7 @@ function RegisterScreen({navigation}) {
                             <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Already have an
                                 account?</Text>
 
-                            <Pressable onPress={() => navigation.navigate('ActivationScreen')}>
+                            <Pressable onPress={() => navigation.navigate('LoginScreen')}>
                                 <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Login</Text>
                             </Pressable>
 

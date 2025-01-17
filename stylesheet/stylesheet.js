@@ -243,6 +243,7 @@ const stylesheet = StyleSheet.create({
         fontSize:12,
         marginTop:2,
         marginLeft:5,
+        textAlign:'center',
         backgroundColor:colors.dangerOpacity15,
         width:"100%",
         paddingHorizontal:30,
