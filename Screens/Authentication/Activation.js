@@ -7,20 +7,18 @@ import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 import {AuthContext} from "../../store/auth-context";
 
-const ActivationScreen = ({navigation,username}) => {
+const ActivationScreen = ({route, navigation}) => {
 
-    console.log(username,'navigation log')
     const [formData, setFormData] = useState({
-        username: 'user11',
+        username: route.params.username,
         activation_code: '',
     });
-    const [loading, setLoading] = useState(false); // State to track loading status
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
+    const [focusedInput, setFocusedInput] = useState(null);
     const handleFocus = (inputName) => {
         setFocusedInput(inputName);
     };
-    const authCtx = useContext(AuthContext);
     // Handle input change
     const handleChange = (name, value) => {
         setFormData({...formData, [name]: value});
@@ -28,7 +26,6 @@ const ActivationScreen = ({navigation,username}) => {
 
     // Handle form submission
     const activeAccount = async () => {
-        // Validate form fields
         const validationErrors = validate(formData);
 
         if (Object.keys(validationErrors).length === 0) {
@@ -42,19 +39,15 @@ const ActivationScreen = ({navigation,username}) => {
                 });
 
                 if (response.success) {
-                    const token = response.token;
-                    console.log("Activation successful, token:", token);
-                    authCtx.authenticate(token);
-                    console.log("Authenticated:", authCtx.isAuthenticated);
+                    navigation.navigate('LoginScreen')
                 } else {
-
                     setErrors({ general: response.error });
                 }
             } catch (err) {
                 console.error('Error:', err);
                 setErrors({ general: 'Request failed. Please try again later.' });
             } finally {
-                setLoading(false); // Stop loading when request is complete
+                setLoading(false);
             }
         } else {
             setErrors(validationErrors);
@@ -123,10 +116,10 @@ const ActivationScreen = ({navigation,username}) => {
                     </View>
 
                     <View style={[stylesheet.alignItemsCenter]}>
-                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Didn't receive any code?</Text>
+                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Already have an account?</Text>
 
-                        <Pressable onPress={() => console.log('resend')}>
-                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Resend code</Text>
+                        <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Login</Text>
                         </Pressable>
 
                     </View>
