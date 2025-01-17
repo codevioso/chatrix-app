@@ -1,14 +1,17 @@
 import {Text, View, Image, KeyboardAvoidingView, TextInput, Pressable, TouchableOpacity} from "react-native";
 import {authenticationStyles} from "../../stylesheet/authentication/authentication-styles";
 import images from "../../constants/images";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
+import {AuthContext} from "../../store/auth-context";
 
-const ActivationScreen = ({navigation}) => {
+const ActivationScreen = ({navigation,username}) => {
+
+    console.log(username,'navigation log')
     const [formData, setFormData] = useState({
-        username: 'swccho263',
+        username: 'user11',
         activation_code: '',
     });
     const [loading, setLoading] = useState(false); // State to track loading status
@@ -17,7 +20,7 @@ const ActivationScreen = ({navigation}) => {
     const handleFocus = (inputName) => {
         setFocusedInput(inputName);
     };
-
+    const authCtx = useContext(AuthContext);
     // Handle input change
     const handleChange = (name, value) => {
         setFormData({...formData, [name]: value});
@@ -39,7 +42,10 @@ const ActivationScreen = ({navigation}) => {
                 });
 
                 if (response.success) {
-                    console.log(response,'res')
+                    const token = response.token;
+                    console.log("Activation successful, token:", token);
+                    authCtx.authenticate(token);
+                    console.log("Authenticated:", authCtx.isAuthenticated);
                 } else {
 
                     setErrors({ general: response.error });
@@ -81,6 +87,8 @@ const ActivationScreen = ({navigation}) => {
 
                 <Image style={authenticationStyles.logo} source={images.logo}/>
 
+                {/* Display general errors */}
+                {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
 
                 <View style={authenticationStyles.formContent}>
                     <Text style={authenticationStyles.authTitle}>Account Activation</Text>

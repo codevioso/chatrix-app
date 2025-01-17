@@ -143,7 +143,7 @@ function RegisterScreen({navigation}) {
                 if (response.success) {
                     console.log(response,'response',errors)
                     // Navigate to another screen after successful registration
-                    navigation.navigate('ActivationScreen', {email: formData.email});
+                    navigation.navigate('ActivationScreen', {username: formData.username});
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
