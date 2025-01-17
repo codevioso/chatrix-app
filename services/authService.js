@@ -30,11 +30,18 @@ class authService {
             if (response.status === 200) {
                 return {success: true, token:response?.data?.access_token ?? null, data:response?.data?.data ?? null};
             } else {
+                console.log('hereeeeeee')
                 return {success: false, error: response.data.error || 'Login failed'};
             }
         } catch (error) {
-            let errors = error?.response;
-            return {success: false, error: errors?.data?.message || 'Login failed' };
+            console.log(error.response.data.errors.password,'errorrr')
+            let errors = null;
+            if (error?.response?.data?.errors?.password){
+                return {success: false, error: error?.response?.data?.errors?.password[0] || 'Login failed' };
+            }else{
+                errors = error?.response;
+                return {success: false, error: errors?.data?.message || 'Login failed' };
+            }
         }
     }
 

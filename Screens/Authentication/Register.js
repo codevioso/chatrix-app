@@ -7,6 +7,7 @@ import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
+import Toast from "react-native-toast-message";
 
 function RegisterScreen({navigation}) {
     const [formData, setFormData] = useState({
@@ -141,9 +142,16 @@ function RegisterScreen({navigation}) {
 
                 // Handle response based on success or failure
                 if (response.success) {
-                    console.log(response,'response',errors)
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Request sent!',
+                        text2: 'A six-digit activation code has been sent to your email address.',
+                    })
+                    setTimeout(() => {
+                        navigation.navigate('ActivationScreen', {username: formData.username});
+                    }, 1000)
                     // Navigate to another screen after successful registration
-                    navigation.navigate('ActivationScreen',{ username: formData.username });
+
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
@@ -156,8 +164,6 @@ function RegisterScreen({navigation}) {
                 setLoading(false); // Stop loading when request is complete
             }
         } else {
-            console.log('123')
-            console.log(validationErrors,'v')
             // Set errors if validation fails
             setErrors(validationErrors);
         }
@@ -166,7 +172,7 @@ function RegisterScreen({navigation}) {
 
     return (<>
         <KeyboardAvoidingView>
-
+            <Toast/>
             <ScrollView showsHorizontalScrollIndicator={false}>
                 <View style={authenticationStyles.authContainer}>
                     <Image style={authenticationStyles.logo} source={images.logo}/>
@@ -175,9 +181,10 @@ function RegisterScreen({navigation}) {
                     <View style={authenticationStyles.formContent}>
                         <Text style={authenticationStyles.authTitle}>Sign up</Text>
                         {/* Display general errors */}
-                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+                        {errors.general && <Text
+                            style={[stylesheet.errorTextG, stylesheet.width90, stylesheet.marginBottom20]}>{errors.general}</Text>}
 
-                        <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
+                        <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'name' && authenticationStyles.authInputFocused]}
                                 placeholder="Name"
@@ -190,7 +197,7 @@ function RegisterScreen({navigation}) {
                             />
                             {errors.name && <Text style={stylesheet.errorText}>{errors.name}</Text>}
                         </View>
-                        <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
+                        <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'username' && authenticationStyles.authInputFocused]}
                                 placeholder="Username"
@@ -205,7 +212,7 @@ function RegisterScreen({navigation}) {
 
                         </View>
 
-                        <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
+                        <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
                                 placeholder="Email"
@@ -221,7 +228,7 @@ function RegisterScreen({navigation}) {
 
                         </View>
 
-                        <View style={[stylesheet.width90, stylesheet.positionRelative,stylesheet.marginBottom20]}>
+                        <View style={[stylesheet.width90, stylesheet.positionRelative, stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'password' && authenticationStyles.authInputFocused]}
                                 placeholder="Password"
@@ -250,7 +257,7 @@ function RegisterScreen({navigation}) {
                         </View>
 
 
-                        <View style={[stylesheet.width90, stylesheet.positionRelative,stylesheet.marginBottom20]}>
+                        <View style={[stylesheet.width90, stylesheet.positionRelative, stylesheet.marginBottom20]}>
                             <TextInput
                                 style={[authenticationStyles.authInput, focusedInput === 'password_confirmation' && authenticationStyles.authInputFocused]}
                                 placeholder="Confirm Password"
@@ -274,20 +281,20 @@ function RegisterScreen({navigation}) {
                                 </TouchableOpacity>
                             </View>
 
-                            {errors.password_confirmation && <Text style={stylesheet.errorText}>{errors.password_confirmation}</Text>}
+                            {errors.password_confirmation &&
+                                <Text style={stylesheet.errorText}>{errors.password_confirmation}</Text>}
                         </View>
 
 
                         <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
                             <PrimaryButton onPress={() => registerAccount()}>
                                 {loading ? (
-                                    <ActivityIndicator size="small" color="#fff"/>
-                                ) :
+                                        <ActivityIndicator size="small" color="#fff"/>
+                                    ) :
                                     'Sign up'
                                 }
-                                 </PrimaryButton>
+                            </PrimaryButton>
                         </View>
-
 
 
                         <View style={[stylesheet.alignItemsCenter]}>

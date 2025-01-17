@@ -14,6 +14,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 import colors from "../../constants/colors";
+import Toast from "react-native-toast-message";
 
 const ForgotScreen = ({navigation}) => {
     const [formData, setFormData] = useState({
@@ -64,7 +65,14 @@ const ForgotScreen = ({navigation}) => {
 
                 // Handle response based on success or failure
                 if (response.success) {
-                    navigation.navigate('ResetScreen',{email:formData.email});
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Request sent!',
+                        text2: 'A six-digit reset code has been sent to your email address.',
+                    })
+                    setTimeout(() => {
+                        navigation.navigate('ResetScreen', {email: formData.email});
+                    },1000)
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
@@ -84,6 +92,7 @@ const ForgotScreen = ({navigation}) => {
 
     return (
         <>
+            <Toast/>
             <KeyboardAvoidingView style={authenticationStyles.authContainer}>
 
                 <Image style={authenticationStyles.logo} source={images.logo}/>
@@ -93,16 +102,17 @@ const ForgotScreen = ({navigation}) => {
                     <Text style={authenticationStyles.authTitle}>Forgot Password</Text>
 
                     {/* Display general errors */}
-                    {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+                    {errors.general && <Text
+                        style={[stylesheet.errorTextG, stylesheet.width90, stylesheet.marginBottom20]}>{errors.general}</Text>}
 
-                    <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
+                    <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
                         <TextInput
                             style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
                             placeholder="Email"
                             placeholderTextColor="#888"
                             keyboardType="email-address"
                             value={formData.email}
-                            onChangeText={(value) => handleChange('email',value)}
+                            onChangeText={(value) => handleChange('email', value)}
                             autoCapitalize="none"
                             autoCorrect={false}
                             onFocus={() => handleFocus('email')}

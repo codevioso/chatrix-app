@@ -6,6 +6,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
 import {AuthContext} from "../../store/auth-context";
+import Toast from "react-native-toast-message";
 
 const ActivationScreen = ({route, navigation}) => {
 
@@ -39,7 +40,14 @@ const ActivationScreen = ({route, navigation}) => {
                 });
 
                 if (response.success) {
-                    navigation.navigate('LoginScreen')
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Activation successful!',
+                        text2: 'Your account has been created successfully! We\'ll redirecting you to the login page shortly.',
+                    })
+                    setTimeout(() => {
+                        navigation.navigate('LoginScreen');
+                    },1000)
                 } else {
                     setErrors({ general: response.error });
                 }
@@ -77,7 +85,7 @@ const ActivationScreen = ({route, navigation}) => {
     return (
         <>
             <KeyboardAvoidingView style={authenticationStyles.authContainer}>
-
+<Toast/>
                 <Image style={authenticationStyles.logo} source={images.logo}/>
 
                 <View style={authenticationStyles.formContent}>

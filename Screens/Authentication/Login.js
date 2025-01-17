@@ -89,6 +89,7 @@ const LoginScreen = ({navigation}) => {
                         authCtx.authenticate(token);
                     },1000)
                 } else {
+                    console.log(response);
                     setErrors({general: response.error});
                 }
             } catch (err) {

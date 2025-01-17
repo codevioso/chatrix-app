@@ -14,6 +14,7 @@ import {useState} from "react";
 import PrimaryButton from "../../components/PrimaryButton";
 import stylesheet from "../../stylesheet/stylesheet";
 import authService from "../../services/authService";
+import Toast from "react-native-toast-message";
 
 const ResetScreen = ({route,navigation}) => {
     const [loading, setLoading] = useState(false); // State to track loading status
@@ -65,7 +66,14 @@ const ResetScreen = ({route,navigation}) => {
                 });
 
                 if (response.success) {
-                    navigation.navigate('LoginScreen')
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Password reset Successfully!',
+                        text2: 'The password has been changed successfully!',
+                    })
+                    setTimeout(() => {
+                        navigation.navigate('LoginScreen', {email: formData.email});
+                    },1000)
                 } else {
 
                     setErrors({ general: response.error });
@@ -108,6 +116,7 @@ const ResetScreen = ({route,navigation}) => {
         <>
             <KeyboardAvoidingView >
 
+                <Toast/>
                 <View style={authenticationStyles.authContainer}>
 
                     <Image style={authenticationStyles.logo} source={images.logo}/>
