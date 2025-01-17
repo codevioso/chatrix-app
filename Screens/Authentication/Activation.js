@@ -80,9 +80,6 @@ const ActivationScreen = ({route, navigation}) => {
 
                 <Image style={authenticationStyles.logo} source={images.logo}/>
 
-                {/* Display general errors */}
-                {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
-
                 <View style={authenticationStyles.formContent}>
                     <Text style={authenticationStyles.authTitle}>Account Activation</Text>
 
@@ -92,6 +89,8 @@ const ActivationScreen = ({route, navigation}) => {
                             Please check your inbox (and spam/junk folder if necessary) to complete the activation
                             process.</Text>
                     </View>
+                    {/* Display general errors */}
+                    {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
 
                     <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                         <TextInput
