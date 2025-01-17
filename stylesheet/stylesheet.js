@@ -237,7 +237,17 @@ const stylesheet = StyleSheet.create({
         fontSize:12,
         marginTop:2,
         marginLeft:5,
-
+    },
+    errorTextG:{
+        color:colors.danger,
+        fontSize:12,
+        marginTop:2,
+        marginLeft:5,
+        backgroundColor:colors.dangerOpacity15,
+        width:"100%",
+        paddingHorizontal:30,
+        paddingVertical:20,
+        borderRadius:12,
     }
 
 

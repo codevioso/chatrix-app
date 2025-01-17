@@ -20,7 +20,7 @@ const LoginScreen = ({navigation}) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false); // State to track loading status
     const [formData, setFormData] = useState({
-        email: '',
+        username: '',
         password: '',
     });
     const [focusedInput, setFocusedInput] = useState(null); // Track which input is focused
@@ -44,10 +44,8 @@ const LoginScreen = ({navigation}) => {
         const errors = {};
 
 
-        if (!data.email) {
-            errors.email = ['Email is required'];
-        } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-            errors.email = ['Email address is invalid'];
+        if (!data.username) {
+            errors.username = ['Username is required'];
         }
 
         if (!data.password) {
@@ -66,29 +64,29 @@ const LoginScreen = ({navigation}) => {
         const validationErrors = validate(formData);
 
         if (Object.keys(validationErrors).length === 0) {
-            // No errors, handle form submission logic here
             try {
                 setErrors({}); // Clear previous errors
                 setLoading(true); // Start loading
 
                 // Use AuthService to handle login
                 const response = await authService.login({
-                    email: formData.email,
+                    username: formData.username,
                     password: formData.password,
                 });
 
                 // Handle response based on success or failure
                 if (response.success) {
                     // Navigate to another screen after successful login
-               /*     await login(response.data.data);
-                    navigation.navigate('Tabs');*/
+                    // await login(response.data.data);
+                    // navigation.navigate('Tabs');
                 } else {
+                    console.log(response.error)
                     // Set error from AuthService response
                     setErrors({general: response.error});
                 }
             } catch (err) {
                 // Handle any unexpected errors
-                console.error('Login error:', err);
+                // console.error('Login error:', err);
                 setErrors({general: 'Login failed. Please try again later.'});
             } finally {
                 setLoading(false); // Stop loading when request is complete
@@ -109,19 +107,23 @@ const LoginScreen = ({navigation}) => {
 
                 <View style={authenticationStyles.formContent}>
                     <Text style={authenticationStyles.authTitle}>Login</Text>
+
+                    {/* Display general errors */}
+                    {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+
                     <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                         <TextInput
-                            style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
-                            placeholder="Email"
+                            style={[authenticationStyles.authInput, focusedInput === 'username' && authenticationStyles.authInputFocused]}
+                            placeholder="Username or Email"
                             placeholderTextColor="#888"
-                            keyboardType="email-address"
-                            value={formData.email}
-                            onChangeText={(value) => handleChange('email',value)}
+                            keyboardType="username-address"
+                            value={formData.username}
+                            onChangeText={(value) => handleChange('username',value)}
                             autoCapitalize="none"
                             autoCorrect={false}
-                            onFocus={() => handleFocus('email')}
+                            onFocus={() => handleFocus('username')}
                         />
-                        {errors.email && <Text style={stylesheet.errorText}>{errors.email}</Text>}
+                        {errors.username && <Text style={stylesheet.errorText}>{errors.username}</Text>}
                     </View>
 
 

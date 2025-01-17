@@ -36,8 +36,8 @@ class authService {
                 return {success: false, error: response.data.error || 'Login failed'};
             }
         } catch (error) {
-            console.error('Login error:', error);
-            return {success: false, error: error.message || 'An error occurred'};
+            let errors = error?.response;
+            return {success: false, error: errors?.data?.message || 'Login failed' };
         }
     }
 
