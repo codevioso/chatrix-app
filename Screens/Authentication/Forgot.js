@@ -64,7 +64,7 @@ const ForgotScreen = ({navigation}) => {
 
                 // Handle response based on success or failure
                 if (response.success) {
-                    navigation.navigate('ResetScreen');
+                    navigation.navigate('ResetScreen',{email:formData.email});
                 } else {
                     // Set error from AuthService response
                     setErrors({general: response.error});
@@ -91,6 +91,10 @@ const ForgotScreen = ({navigation}) => {
 
                 <View style={authenticationStyles.formContent}>
                     <Text style={authenticationStyles.authTitle}>Forgot Password</Text>
+
+                    {/* Display general errors */}
+                    {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+
                     <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                         <TextInput
                             style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
@@ -107,7 +111,7 @@ const ForgotScreen = ({navigation}) => {
                     </View>
 
                     <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton onPress={() => navigation.navigate('ResetScreen',{email: formData.email})}>
+                        <PrimaryButton onPress={forgotPassword}>
                             {loading ? (
                                 <ActivityIndicator size={'small'} color={colors.white}/>
                             ) : 'Submit'}

@@ -115,6 +115,12 @@ const ResetScreen = ({navigation}) => {
 
                     <View style={authenticationStyles.formContent}>
                         <Text style={authenticationStyles.authTitle}>Reset Password</Text>
+                        {/* Display general errors */}
+                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+
+                        <View style={[stylesheet.alertSuccess, stylesheet.width90, stylesheet.marginBottom25]}>
+                            <Text style={[stylesheet.alertSuccessText, stylesheet.fontSize15, stylesheet.textCenter]}>A six-digit reset code has been sent to your email address</Text>
+                        </View>
 
                         <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                             <TextInput
