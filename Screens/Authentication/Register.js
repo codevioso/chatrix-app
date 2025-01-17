@@ -290,7 +290,7 @@ function RegisterScreen({navigation}) {
                             <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Already have an
                                 account?</Text>
 
-                            <Pressable onPress={() => navigation.navigate('ActivationScreen')}>
+                            <Pressable onPress={() => navigation.navigate('LoginScreen')}>
                                 <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Login</Text>
                             </Pressable>
 
