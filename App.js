@@ -56,19 +56,15 @@ function Navigator() {
     }, [authCtx.isAuthenticated]);
 
     return (
-            <AuthContextProvider>
-                {!authCtx.isAuthenticated && <AuthStack/>}
-                {authCtx.isAuthenticated && <AuthenticatedStack/>}
-            </AuthContextProvider>
-    )
+        !authCtx.isAuthenticated ? <AuthStack /> : <AuthenticatedStack />
+    );
 }
-
 
 export default function App() {
     return (
         <NavigationContainer>
             <AuthContextProvider>
-                <Navigator/>
+                <Navigator />
             </AuthContextProvider>
         </NavigationContainer>
     );
