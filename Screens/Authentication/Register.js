@@ -238,7 +238,7 @@ function RegisterScreen({navigation}) {
                             {/*Pass icon*/}
                             <View style={[authenticationStyles.passIconWrap]}>
                                 <TouchableOpacity onPress={() => handlePassVisibility('password')}>
-                                    {passVisibility ? (
+                                    {passVisibility.password ? (
                                         <Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
                                                source={images.eye}/>) : (
                                         <Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
@@ -266,7 +266,7 @@ function RegisterScreen({navigation}) {
                             {/*Pass icon*/}
                             <View style={[authenticationStyles.passIconWrap]}>
                                 <TouchableOpacity onPress={() => handlePassVisibility('confirmPassword')}>
-                                    {passVisibility ? (
+                                    {passVisibility.confirmPassword ? (
                                         <Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
                                                source={images.eye}/>) : (
                                         <Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}

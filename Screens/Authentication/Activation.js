@@ -92,7 +92,7 @@ const ActivationScreen = ({navigation}) => {
                             process.</Text>
                     </View>
 
-                    <View style={stylesheet.width90}>
+                    <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
                         <TextInput
                             style={[authenticationStyles.authInput, focusedInput === 'activation_code' && authenticationStyles.authInputFocused]}
                             placeholder="Activation Code"
@@ -117,7 +117,7 @@ const ActivationScreen = ({navigation}) => {
                     <View style={[stylesheet.alignItemsCenter]}>
                         <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Didn't receive any code?</Text>
 
-                        <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+                        <Pressable onPress={() => console.log('resend')}>
                             <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Resend code</Text>
                         </Pressable>
 

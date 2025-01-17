@@ -81,15 +81,15 @@ class authService {
             const response = await axios.post(`${this.authApi}/activate/account`, param);
             console.log(response)
 
-            if (response.data.status === 2000) {
+            if (response.status === 201) {
                 return {success: true};
             } else {
                 // Handle unsuccessful login attempt
                 return {success: false, error: response.data.error || 'Account activation failed'};
             }
         } catch (error) {
-            console.error('Activation error:', error);
-            return {success: false, error: error.message || 'An error occurred'};
+            let errors = error?.response;
+            return {success: false, error: errors?.data?.message || 'Activation failed' };
         }
     }
 
