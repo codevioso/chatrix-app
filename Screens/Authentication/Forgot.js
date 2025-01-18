@@ -91,59 +91,56 @@ const ForgotScreen = ({navigation}) => {
     };
 
     return (
-        <ScrollView style={stylesheet.flex1}>
-            <View style={authenticationStyles.authContainer}>
-                <Toast/>
+        <KeyboardAvoidingView style={authenticationStyles.authContainer}>
+            <Toast/>
 
-                <Image style={authenticationStyles.logo} source={images.logo}/>
+            <Image style={authenticationStyles.logo} source={images.logo}/>
 
 
-                <View style={authenticationStyles.formContent}>
-                    <Text style={authenticationStyles.authTitle}>Forgot Password</Text>
+            <View style={authenticationStyles.formContent}>
+                <Text style={authenticationStyles.authTitle}>Forgot Password</Text>
 
-                    {/* Display general errors */}
-                    {errors.general && <Text
-                        style={[stylesheet.errorTextG, stylesheet.width90, stylesheet.marginBottom20]}>{errors.general}</Text>}
+                {/* Display general errors */}
+                {errors.general && <Text
+                    style={[stylesheet.errorTextG, stylesheet.width90, stylesheet.marginBottom20]}>{errors.general}</Text>}
 
-                    <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
-                        <TextInput
-                            style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
-                            placeholder="Email"
-                            placeholderTextColor="#888"
-                            keyboardType="email-address"
-                            value={formData.email}
-                            onChangeText={(value) => handleChange('email', value)}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onFocus={() => handleFocus('email')}
-                        />
-                        {errors.email && <Text style={stylesheet.errorText}>{errors.email}</Text>}
-                    </View>
+                <View style={[stylesheet.width90, stylesheet.marginBottom20]}>
+                    <TextInput
+                        style={[authenticationStyles.authInput, focusedInput === 'email' && authenticationStyles.authInputFocused]}
+                        placeholder="Email"
+                        placeholderTextColor="#888"
+                        keyboardType="email-address"
+                        value={formData.email}
+                        onChangeText={(value) => handleChange('email', value)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        onFocus={() => handleFocus('email')}
+                    />
+                    {errors.email && <Text style={stylesheet.errorText}>{errors.email}</Text>}
+                </View>
 
-                    <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
-                        <PrimaryButton onPress={forgotPassword}>
-                            {loading ? (
-                                <ActivityIndicator size={'small'} color={colors.white}/>
-                            ) : 'Submit'}
-                        </PrimaryButton>
-                    </View>
+                <View style={[stylesheet.width90, stylesheet.marginBottom40]}>
+                    <PrimaryButton onPress={forgotPassword}>
+                        {loading ? (
+                            <ActivityIndicator size={'small'} color={colors.white}/>
+                        ) : 'Submit'}
+                    </PrimaryButton>
+                </View>
 
-                    <View style={[stylesheet.alignItemsCenter]}>
-                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Remember your password?</Text>
+                <View style={[stylesheet.alignItemsCenter]}>
+                    <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Remember your password?</Text>
 
-                        <Pressable onPress={() => navigation.navigate('LoginScreen')}>
-                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Log in</Text>
-                        </Pressable>
-
-                    </View>
+                    <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+                        <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Log in</Text>
+                    </Pressable>
 
                 </View>
 
-                <View></View>
-
-
             </View>
-        </ScrollView>
+
+            <View></View>
+
+        </KeyboardAvoidingView>
     )
 }
 
