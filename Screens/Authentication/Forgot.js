@@ -5,7 +5,7 @@ import {
     KeyboardAvoidingView,
     TextInput,
     Pressable,
-    ActivityIndicator
+    ActivityIndicator, ScrollView
 } from "react-native";
 import {authenticationStyles} from "../../stylesheet/authentication/authentication-styles";
 import images from "../../constants/images";
@@ -91,9 +91,9 @@ const ForgotScreen = ({navigation}) => {
     };
 
     return (
-        <>
-            <Toast/>
-            <KeyboardAvoidingView style={authenticationStyles.authContainer}>
+        <ScrollView style={stylesheet.flex1}>
+            <View style={authenticationStyles.authContainer}>
+                <Toast/>
 
                 <Image style={authenticationStyles.logo} source={images.logo}/>
 
@@ -142,8 +142,8 @@ const ForgotScreen = ({navigation}) => {
                 <View></View>
 
 
-            </KeyboardAvoidingView>
-        </>
+            </View>
+        </ScrollView>
     )
 }
 

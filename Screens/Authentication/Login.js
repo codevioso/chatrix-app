@@ -2,11 +2,11 @@ import {
     Text,
     View,
     Image,
-    KeyboardAvoidingView,
     TextInput,
     Pressable,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    ScrollView
 } from "react-native";
 import {authenticationStyles} from "../../stylesheet/authentication/authentication-styles";
 import images from "../../constants/images";
@@ -89,7 +89,6 @@ const LoginScreen = ({navigation}) => {
                         authCtx.authenticate(token);
                     },1000)
                 } else {
-                    console.log(response);
                     setErrors({general: response.error});
                 }
             } catch (err) {
@@ -104,95 +103,96 @@ const LoginScreen = ({navigation}) => {
 
 
     return (
-        <>
-            <Toast/>
-            <KeyboardAvoidingView style={authenticationStyles.authContainer}>
+            <ScrollView style={stylesheet.flex1}>
+                <View style={authenticationStyles.authContainer}>
 
-                <Image style={authenticationStyles.logo} source={images.logo}/>
+                    <Toast/>
 
-
-                <View style={authenticationStyles.formContent}>
-                    <Text style={authenticationStyles.authTitle}>Login</Text>
-
-                    {/* Display general errors */}
-                    {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
-
-                    <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
-                        <TextInput
-                            style={[authenticationStyles.authInput, focusedInput === 'username' && authenticationStyles.authInputFocused]}
-                            placeholder="Username or Email"
-                            placeholderTextColor="#888"
-                            keyboardType="username-address"
-                            value={formData.username}
-                            onChangeText={(value) => handleChange('username',value)}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onFocus={() => handleFocus('username')}
-                        />
-                        {errors.username && <Text style={stylesheet.errorText}>{errors.username}</Text>}
-                    </View>
+                    <Image style={authenticationStyles.logo} source={images.logo}/>
 
 
-                    <View style={[stylesheet.width90, stylesheet.positionRelative,stylesheet.marginBottom20]}>
-                        <TextInput
-                            style={[authenticationStyles.authInput, focusedInput === 'password' && authenticationStyles.authInputFocused]}
-                            placeholder="Password"
-                            placeholderTextColor="#888"
-                            secureTextEntry={!passVisibility}
-                            value={formData.password}
-                            onChangeText={(value) => handleChange('password', value)}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onFocus={() => handleFocus('password')}
-                        />
+                    <View style={authenticationStyles.formContent}>
+                        <Text style={authenticationStyles.authTitle}>Login</Text>
 
-                        {/*Pass icon*/}
-                        <View style={[authenticationStyles.passIconWrap]}>
-                            <TouchableOpacity onPress={() => handlePassVisibility()}>
-                                {passVisibility ?
-                                    (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
-                                            source={images.eye}/>)
-                                    :
-                                    (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
-                                            source={images.eyeHidden}/>)
-                                }
-                            </TouchableOpacity>
+                        {/* Display general errors */}
+                        {errors.general && <Text style={[stylesheet.errorTextG, stylesheet.width90,stylesheet.marginBottom20]}>{errors.general}</Text> }
+
+                        <View style={[stylesheet.width90,stylesheet.marginBottom20]}>
+                            <TextInput
+                                style={[authenticationStyles.authInput, focusedInput === 'username' && authenticationStyles.authInputFocused]}
+                                placeholder="Username or Email"
+                                placeholderTextColor="#888"
+                                keyboardType="username-address"
+                                value={formData.username}
+                                onChangeText={(value) => handleChange('username',value)}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                onFocus={() => handleFocus('username')}
+                            />
+                            {errors.username && <Text style={stylesheet.errorText}>{errors.username}</Text>}
                         </View>
 
-                        {errors.password && <Text style={stylesheet.errorText}>{errors.password}</Text>}
+
+                        <View style={[stylesheet.width90, stylesheet.positionRelative,stylesheet.marginBottom20]}>
+                            <TextInput
+                                style={[authenticationStyles.authInput, focusedInput === 'password' && authenticationStyles.authInputFocused]}
+                                placeholder="Password"
+                                placeholderTextColor="#888"
+                                secureTextEntry={!passVisibility}
+                                value={formData.password}
+                                onChangeText={(value) => handleChange('password', value)}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                onFocus={() => handleFocus('password')}
+                            />
+
+                            {/*Pass icon*/}
+                            <View style={[authenticationStyles.passIconWrap]}>
+                                <TouchableOpacity onPress={() => handlePassVisibility()}>
+                                    {passVisibility ?
+                                        (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
+                                                source={images.eye}/>)
+                                        :
+                                        (<Image resizeMode={'contain'} style={[authenticationStyles.passIcon]}
+                                                source={images.eyeHidden}/>)
+                                    }
+                                </TouchableOpacity>
+                            </View>
+
+                            {errors.password && <Text style={stylesheet.errorText}>{errors.password}</Text>}
+                        </View>
+
+                        <View style={authenticationStyles.forgotContainer}>
+                            <Text style={[stylesheet.fontSize15]}  onPress={() => navigation.navigate('ForgotScreen')}>
+                                forgot your password?
+                            </Text>
+                        </View>
+
+                        <View style={[stylesheet.width90, stylesheet.marginBottom30]}>
+                            <PrimaryButton onPress={login}>
+                                {loading ? (
+                                    <ActivityIndicator size={'small'} color={colors.white}/>
+                                ) : ('Login')}
+                            </PrimaryButton>
+                        </View>
+
+
+
+                        <View style={[stylesheet.alignItemsCenter]}>
+                            <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Don't have an account?</Text>
+
+                            <Pressable onPress={() => navigation.navigate('RegisterScreen')}>
+                                <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Sign up</Text>
+                            </Pressable>
+                        </View>
+
                     </View>
 
-                    <View style={authenticationStyles.forgotContainer}>
-                        <Text style={[stylesheet.fontSize15]}  onPress={() => navigation.navigate('ForgotScreen')}>
-                            forgot your password?
-                        </Text>
-                    </View>
+                    <View></View>
 
-                    <View style={[stylesheet.width90, stylesheet.marginBottom30]}>
-                        <PrimaryButton onPress={login}>
-                            {loading ? (
-                                <ActivityIndicator size={'small'} color={colors.white}/>
-                            ) : ('Login')}
-                        </PrimaryButton>
-                    </View>
-
-
-
-                    <View style={[stylesheet.alignItemsCenter]}>
-                        <Text style={[stylesheet.marginBottom20, stylesheet.fontSize15]}>Don't have an account?</Text>
-
-                        <Pressable onPress={() => navigation.navigate('RegisterScreen')}>
-                            <Text style={[stylesheet.fontSize15, stylesheet.fontWeight700]}>Sign up</Text>
-                        </Pressable>
-                    </View>
 
                 </View>
-
-                <View></View>
-
-
-            </KeyboardAvoidingView>
-        </>
+            </ScrollView>
     )
 }
 

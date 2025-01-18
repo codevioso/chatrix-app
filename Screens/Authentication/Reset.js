@@ -2,7 +2,6 @@ import {
     Text,
     View,
     Image,
-    KeyboardAvoidingView,
     TextInput,
     Pressable,
     TouchableOpacity,
@@ -114,7 +113,7 @@ const ResetScreen = ({route,navigation}) => {
 
     return (
         <>
-            <KeyboardAvoidingView >
+            <ScrollView >
 
                 <Toast/>
                 <View style={authenticationStyles.authContainer}>
@@ -228,7 +227,7 @@ const ResetScreen = ({route,navigation}) => {
                 </View>
 
 
-            </KeyboardAvoidingView>
+            </ScrollView>
         </>
     )
 }

@@ -30,13 +30,11 @@ class authService {
             if (response.status === 200) {
                 return {success: true, token:response?.data?.access_token ?? null, data:response?.data?.data ?? null};
             } else {
-                console.log('hereeeeeee')
                 return {success: false, error: response.data.error || 'Login failed'};
             }
         } catch (error) {
-            console.log(error.response.data.errors.password,'errorrr')
             let errors = null;
-            if (error?.response?.data?.errors?.password){
+            if (error?.response?.data?.errors?.password[0]){
                 return {success: false, error: error?.response?.data?.errors?.password[0] || 'Login failed' };
             }else{
                 errors = error?.response;
@@ -49,17 +47,20 @@ class authService {
     async forgot(param) {
         try {
             const response = await axios.post(`${this.authApi}/forgot/password`, param);
-            console.log(response)
 
             if (response.status === 200) {
                 return {success: true};
             } else {
-                // Handle unsuccessful login attempt
-                return {success: false, error: response.data.error || 'Forgot failed'};
+                return {success: false, error: response.data.error || 'Unable to send request. Please try again'};
             }
         } catch (error) {
-            let errors = error?.response;
-            return {success: false, error: errors?.data?.message || 'Forgot failed' };
+            let errors = null;
+            if (error?.response?.data?.errors?.email[0]){
+                return {success: false, error: error?.response?.data?.errors?.email[0] || 'Unable to send request. Please try again' };
+            }else{
+                errors = error?.response;
+                return {success: false, error: errors?.data?.message || 'Unable to send request. Please try again' };
+            }
         }
     }
 
@@ -77,8 +78,14 @@ class authService {
                 return {success: false, error: response.data.error || 'Reset Password failed'};
             }
         } catch (error) {
-            let errors = error?.response;
-            return {success: false, error: errors?.data?.message || 'Reset failed' };
+            let errors = null;
+            if (error?.response?.data?.errors?.reset_code[0]){
+                return {success: false, error: error?.response?.data?.errors?.reset_code[0] || 'Invalid code' };
+            }
+            else{
+                errors = error?.response;
+                return {success: false, error: errors?.data?.message || 'Invalid code' };
+            }
         }
     }
 
