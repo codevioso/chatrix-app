@@ -11,6 +11,7 @@ const images = {
     notification: require('../assets/tabs/bell.png'),
     chatBubble: require('../assets/tabs/message-bubble.png'),
     invite: require('../assets/tabs/invite.png'),
+    arrowLeft: require('../assets/global/arrow-left.png'),
 }
 
 export default images;
