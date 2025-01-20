@@ -249,7 +249,9 @@ const stylesheet = StyleSheet.create({
         paddingHorizontal:30,
         paddingVertical:20,
         borderRadius:12,
-    }
+    },
+
+
 
 
 })

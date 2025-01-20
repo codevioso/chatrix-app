@@ -11,16 +11,21 @@ import AuthContextProvider, {AuthContext} from "./store/auth-context";
 import DashboardScreen from "./Screens/Pages/Dashboard/Dashboard";
 import {useContext, useEffect} from "react";
 import Toast from "react-native-toast-message";
+import Header from "./Screens/Pages/Layout/Shared/Header";
+import BottomTabNavigation from "./navigation/bottomTabNavigation";
+import ProfileScreen from "./Screens/Pages/Profile/profileScreen";
 
 const Stack = createNativeStackNavigator();
 
 
 function AuthenticatedStack(){
     return (
-        <Stack.Navigator id={"AuthenticatedStack"} initialRouteName={'DashboardScreen'}>
-            <Stack.Screen name={'DashboardScreen'} component={DashboardScreen} options={{
+        <Stack.Navigator id={"AuthenticatedStack"} initialRouteName={'Tabs'}>
+            <Stack.Screen name="Tabs" component={BottomTabNavigation} options={{ headerShown: false }} />
+
+            <Stack.Screen name={'ProfileScreen'} component={ProfileScreen} options={{
                 headerShown: false,
-            }}></Stack.Screen>
+            }}/>
         </Stack.Navigator>
     );
 }
