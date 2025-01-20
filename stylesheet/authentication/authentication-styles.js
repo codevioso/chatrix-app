@@ -31,7 +31,6 @@ export const authenticationStyles: AuthenticationInterface = StyleSheet.create({
         padding: 20,
         fontSize: 16,
         color: colors.blackVar1,
-        marginBottom: 20,
         shadowColor: colors.black,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.2,
