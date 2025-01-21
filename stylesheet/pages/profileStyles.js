@@ -37,6 +37,28 @@ const profileStyles = StyleSheet.create({
         textAlign: 'center',
         marginBottom:30,
     },
+
+
+    avatarContainer: {
+        alignSelf: 'center',
+        marginBottom: 40,
+        width: 150,
+        height: 150,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+    },
+    avatar: {
+        width: '100%',
+        height: '100%',
+    },
+    avatarPlaceholder: {
+        color: '#888',
+        textAlign: 'center',
+    },
 })
 
 export default profileStyles;

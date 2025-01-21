@@ -42,7 +42,7 @@ export const authenticationStyles: AuthenticationInterface = StyleSheet.create({
     },
     authInputFocused:{
         borderWidth: 1, // Add border on focus
-        borderColor: '#d3d3d3', // Light gray border color
+        borderColor: colors.lightVar2, // Light gray border color
         transitionProperty:'ease',
         transitionDuration:'.3s'
     },

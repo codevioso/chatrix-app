@@ -251,7 +251,29 @@ const stylesheet = StyleSheet.create({
         borderRadius:12,
     },
 
+    formControl: {
+        width:'100%',
+        backgroundColor: colors.white,
+        borderRadius: 15,
+        padding: 20,
+        fontSize: 16,
+        color: colors.blackVar1,
+        shadowColor: colors.black,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1,
+        elevation: 3,
+        outline:'none',
+        borderWidth:1,
+        borderColor:'transparent',
+    },
 
+    inputFocused:{
+        borderWidth: 1, // Add border on focus
+        borderColor: colors.lightVar2, // Light gray border color
+        transitionProperty:'ease',
+        transitionDuration:'.3s'
+    },
 
 
 })

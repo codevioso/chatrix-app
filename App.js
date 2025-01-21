@@ -14,6 +14,8 @@ import Toast from "react-native-toast-message";
 import Header from "./Screens/Pages/Layout/Shared/Header";
 import BottomTabNavigation from "./navigation/bottomTabNavigation";
 import ProfileScreen from "./Screens/Pages/Profile/profileScreen";
+import ProfileEditScreen from "./Screens/Pages/Profile/ProfileEditScreen";
+import PasswordChangeScreen from "./Screens/Pages/Profile/PasswordChangeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +26,14 @@ function AuthenticatedStack(){
             <Stack.Screen name="Tabs" component={BottomTabNavigation} options={{ headerShown: false }} />
 
             <Stack.Screen name={'ProfileScreen'} component={ProfileScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'ProfileEditScreen'} component={ProfileEditScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'PasswordChangeScreen'} component={PasswordChangeScreen} options={{
                 headerShown: false,
             }}/>
         </Stack.Navigator>

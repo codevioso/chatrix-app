@@ -54,8 +54,8 @@ function ProfileScreen({navigation}) {
 
 
             <View style={[stylesheet.width75,stylesheet.flexGap10,stylesheet.marginTop50]}>
-                <PrimaryButton>Edit Profile</PrimaryButton>
-                <PrimaryButton>Change Password</PrimaryButton>
+                <PrimaryButton onPress={() => navigation.navigate('ProfileEditScreen')}>Edit Profile</PrimaryButton>
+                <PrimaryButton onPress={() => navigation.navigate('PasswordChangeScreen')}>Change Password</PrimaryButton>
             </View>
         </View>
     );
