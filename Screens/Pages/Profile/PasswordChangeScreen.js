@@ -51,6 +51,7 @@ function PasswordChangeScreen({navigation}) {
                             secureTextEntry
                             value={formData.current_password}
                             onChangeText={(text) => handleInputChange('current_password', text)}
+                            onFocus={() => handleFocus('current_password')}
                         />
 
                         {/* New Password */}
@@ -60,6 +61,7 @@ function PasswordChangeScreen({navigation}) {
                             secureTextEntry
                             value={formData.password}
                             onChangeText={(text) => handleInputChange('password', text)}
+                            onFocus={() => handleFocus('password')}
                         />
 
                         {/* Confirm New Password */}
@@ -69,6 +71,7 @@ function PasswordChangeScreen({navigation}) {
                             secureTextEntry
                             value={formData.password_confirmation}
                             onChangeText={(text) => handleInputChange('password_confirmation', text)}
+                            onFocus={() => handleFocus('password_confirmation')}
                         />
 
                         {/* Submit Button */}

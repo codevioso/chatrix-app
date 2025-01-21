@@ -27,6 +27,9 @@ const createDynamicPaddings = () => {
     let paddingStyles = {};
 
     for (let i = 0; i <= 1000; i += 1) {
+        paddingStyles[`padding${i}`] = {
+            padding: i,
+        };
         paddingStyles[`paddingTop${i}`] = {
             paddingTop: i,
         };
@@ -274,6 +277,18 @@ const stylesheet = StyleSheet.create({
         transitionProperty:'ease',
         transitionDuration:'.3s'
     },
+
+    iconBtn:{
+        backgroundColor:colors.white,
+        padding:15,
+        borderRadius:15,
+        height:62,
+        borderWidth:1,
+        borderColor:colors.lightVar2,
+        justifyContent:"center",
+        alignItems:'center',
+        display:"flex"
+    }
 
 
 })

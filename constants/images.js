@@ -12,6 +12,8 @@ const images = {
     chatBubble: require('../assets/tabs/message-bubble.png'),
     invite: require('../assets/tabs/invite.png'),
     arrowLeft: require('../assets/global/arrow-left.png'),
+    filter: require('../assets/global/filter.png'),
+    plusWhite: require('../assets/global/plus-white.png'),
 }
 
 export default images;
