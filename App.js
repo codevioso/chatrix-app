@@ -16,6 +16,9 @@ import BottomTabNavigation from "./navigation/bottomTabNavigation";
 import ProfileScreen from "./Screens/Pages/Profile/profileScreen";
 import ProfileEditScreen from "./Screens/Pages/Profile/ProfileEditScreen";
 import PasswordChangeScreen from "./Screens/Pages/Profile/PasswordChangeScreen";
+import TeamFormScreen from "./Screens/Pages/Team/TeamForm";
+import TeamConversation from "./Screens/Pages/Team/TeamConversation";
+import TeamConversationScreen from "./Screens/Pages/Team/TeamConversation";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +37,14 @@ function AuthenticatedStack(){
             }}/>
 
             <Stack.Screen name={'PasswordChangeScreen'} component={PasswordChangeScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'TeamFormScreen'} component={TeamFormScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'TeamConversationScreen'} component={TeamConversationScreen} options={{
                 headerShown: false,
             }}/>
         </Stack.Navigator>

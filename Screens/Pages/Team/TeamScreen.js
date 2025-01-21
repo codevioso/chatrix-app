@@ -8,7 +8,7 @@ import PrimaryButton from "../../../components/PrimaryButton";
 import teamStyles from "../../../stylesheet/pages/teamStyles";
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 
-function TeamScreen(props) {
+function TeamScreen({navigation}) {
     const [formData, setFormData] = useState({
         searchParam: '',
     });
@@ -53,7 +53,7 @@ function TeamScreen(props) {
             renderLeftActions={() => renderLeftActions(item.id)}
             renderRightActions={renderRightActions}
         >
-            <View style={teamStyles.chatItem}>
+            <View style={teamStyles.chatItem} onPress={() =>navigation.navigate('TeamConversationScreen')}>
                 {/* Avatar */}
                 <View style={teamStyles.chatAvatar}>
                     <Text style={teamStyles.chatAvatarText}>
@@ -102,7 +102,7 @@ function TeamScreen(props) {
 
                 </View>
 
-                <PrimaryButton>
+                <PrimaryButton onPress={() => navigation.navigate('TeamFormScreen')}>
                     Add a new Team
                     {/*<Image style={{width:24,height:24}} source={images.plusWhite}/>*/}
                 </PrimaryButton>
