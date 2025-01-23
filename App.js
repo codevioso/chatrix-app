@@ -11,16 +11,42 @@ import AuthContextProvider, {AuthContext} from "./store/auth-context";
 import DashboardScreen from "./Screens/Pages/Dashboard/Dashboard";
 import {useContext, useEffect} from "react";
 import Toast from "react-native-toast-message";
+import Header from "./Screens/Pages/Layout/Shared/Header";
+import BottomTabNavigation from "./navigation/bottomTabNavigation";
+import ProfileScreen from "./Screens/Pages/Profile/profileScreen";
+import ProfileEditScreen from "./Screens/Pages/Profile/ProfileEditScreen";
+import PasswordChangeScreen from "./Screens/Pages/Profile/PasswordChangeScreen";
+import TeamFormScreen from "./Screens/Pages/Team/TeamForm";
+import TeamConversation from "./Screens/Pages/Team/TeamConversation";
+import TeamConversationScreen from "./Screens/Pages/Team/TeamConversation";
 
 const Stack = createNativeStackNavigator();
 
 
 function AuthenticatedStack(){
     return (
-        <Stack.Navigator id={"AuthenticatedStack"} initialRouteName={'DashboardScreen'}>
-            <Stack.Screen name={'DashboardScreen'} component={DashboardScreen} options={{
+        <Stack.Navigator id={"AuthenticatedStack"} initialRouteName={'Tabs'}>
+            <Stack.Screen name="Tabs" component={BottomTabNavigation} options={{ headerShown: false }} />
+
+            <Stack.Screen name={'ProfileScreen'} component={ProfileScreen} options={{
                 headerShown: false,
-            }}></Stack.Screen>
+            }}/>
+
+            <Stack.Screen name={'ProfileEditScreen'} component={ProfileEditScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'PasswordChangeScreen'} component={PasswordChangeScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'TeamFormScreen'} component={TeamFormScreen} options={{
+                headerShown: false,
+            }}/>
+
+            <Stack.Screen name={'TeamConversationScreen'} component={TeamConversationScreen} options={{
+                headerShown: false,
+            }}/>
         </Stack.Navigator>
     );
 }
