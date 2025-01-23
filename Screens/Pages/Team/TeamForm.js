@@ -57,14 +57,13 @@ function TeamFormScreen({navigation}) {
             <View style={[stylesheet.dFlex, stylesheet.flexRow,stylesheet.alignItemsCenter,stylesheet,stylesheet.flexGap20, stylesheet.marginBottom20, stylesheet.marginTop50]}>
 
                 <Pressable
-                    style={[stylesheet.dFlex, stylesheet.iconBtn, stylesheet.flexRow, stylesheet.alignItemsCenter, stylesheet.flexGap5]}
+                    style={[stylesheet.dFlex,  stylesheet.flexRow, stylesheet.alignItemsCenter, stylesheet.flexGap5]}
                     onPress={() => navigation.goBack()}
                 >
                     <Image source={images.arrowLeft}/>
                     <Text style={[stylesheet.fontSize16]}>Back</Text>
                 </Pressable>
 
-                <Text style={[stylesheet.fontSize24]}>Create a Team</Text>
                 <View></View>
             </View>
 

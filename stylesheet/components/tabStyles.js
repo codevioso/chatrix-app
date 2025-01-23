@@ -18,6 +18,7 @@ const tabStyles = StyleSheet.create({
         shadowOpacity: 0.04,
         shadowRadius: 20,
         elevation: 1,
+        borderWidth:10,
     }
 })
 export default tabStyles;
